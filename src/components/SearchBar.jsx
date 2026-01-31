@@ -82,7 +82,7 @@ export default function SearchBar({ query, setQuery, onSelectCity }) {
   };
 
   return (
-    <div ref={containerRef} className="relative w-full max-w-[70rem] mt-32 mx-auto">
+    <div ref={containerRef} className="relative w-full max-w-[70rem] mt-4 mx-auto">
       <form onSubmit={handleSubmit} className="flex items-center gap-3">
         <div className="relative w-full">
           <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-white/70" />

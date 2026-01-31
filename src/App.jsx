@@ -25,14 +25,17 @@ function App() {
           "url('/images/—Pngtree—white cloud on blue sky_1229456.jpg')",
       }}
     >
-      <div className="inset-0 bg-black/50 px-4 md:px-[12rem] pt-4 min-h-screen ">
+      <div className="inset-0 bg-black/50 pt-4 min-h-screen ">
         <Header />
-        <SearchBar
-          query={query}
-          setQuery={setQuery}
-          onSelectCity={handleSelectCity}
-        />
-        <Weatherlist city={selectedCity} />
+        <div className="px-4 md:px-[12rem]">
+          {" "}
+          <SearchBar
+            query={query}
+            setQuery={setQuery}
+            onSelectCity={handleSelectCity}
+          />
+          <Weatherlist city={selectedCity} />
+        </div>
       </div>
     </div>
   );
