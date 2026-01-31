@@ -38,7 +38,7 @@ export default function WeatherList({ city }) {
 
   const getWeatherText = (code) => {
   if (code === 0) return "Clear sky";
-  if (code <= 3) return "Prtly cloudy";
+  if (code <= 3) return "Partly cloudy";
   if (code <= 48) return "Foggy";
   if (code <= 57) return " Freezing Drizzle";
   if (code <= 65) return " Slight Rain";
@@ -57,9 +57,9 @@ export default function WeatherList({ city }) {
     key={day}
     className="bg-white/30 backdrop-blur-md text-white p-4 rounded-md"
   >
-    <p className="font-semibold">{day}</p>
-    <p>{getWeatherText(forecast.weathercode[index])}</p>
-    <p>{forecast.temperature_2m_mean[index]}°C</p>
+    <p className="font-semibold">Date: {day}</p>
+    <p>Weather Condition: {getWeatherText(forecast.weathercode[index])}</p>
+    <p>Temparature: {forecast.temperature_2m_mean[index]}°C</p>
   </div>
 ))}
 
