@@ -68,7 +68,7 @@ export default function WeatherList({ city, query }) {
               ? ` Temperature: ${forecast.temperature_2m_mean[0]}°C`
               : "No data available"}
           </p>
-          <p>{getWeatherText(forecast?.weathercode[0])}</p>
+          <p>{getWeatherText(forecast?.weathercode[0])}!</p>
         </div>
       </div>
 
@@ -86,9 +86,9 @@ export default function WeatherList({ city, query }) {
             className="bg-white/30 backdrop-blur-md text-white p-4 rounded-md"
           >
             <CloudSun size={28} color="orange" />
-            <p className="font-semibold text-2xl">Date: {day}</p>
+            <p className="font-semibold text-xl">Date: {day}</p>
             {/* <p>{getWeatherText(forecast.weathercode[index + 1])}</p> */}
-            <p className="font-semibold text-2xl">
+            <p className="font-semibold text-xl">
               {forecast.temperature_2m_mean[index + 1]}°C
             </p>
           </div>
@@ -106,9 +106,9 @@ export default function WeatherList({ city, query }) {
                 X
               </button>
             </div>
-            <h2 className="text-lg font-bold">Date: {selectItem.date}</h2>
-            <h2 className="text-lg font-bold"> Temp: {selectItem.temp}°C</h2>
-            <p className="mt-1 font-semibold">
+            <h2 className="text-xl font-bold">Date: {selectItem.date}</h2>
+            <h2 className="text-xl font-bold"> Temp: {selectItem.temp}°C</h2>
+            <p className="text-xl font-semibold">
               {getWeatherText(selectItem.weather)}
             </p>
           </div>
