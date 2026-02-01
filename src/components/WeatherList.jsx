@@ -1,6 +1,7 @@
+import { CloudSun } from "lucide-react";
 import { useEffect, useState } from "react";
 
-export default function WeatherList({ city }) {
+export default function WeatherList({ city, query }) {
   const [forecast, setForecast] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -52,21 +53,26 @@ export default function WeatherList({ city }) {
 
   return (
     <div>
-      <div>
-        <h1>Today</h1>
-        <p>
-          {forecast?.temperature_2m_mean[0]
-            ? `Date: ${forecast.time[0]}`
-            : "No data available"}
-        </p>
-        <p>
-          {" "}
-          {forecast?.temperature_2m_mean[0]
-            ? ` Temperature: ${forecast.temperature_2m_mean[0]}°C`
-            : "No data available"}
-        </p>
+      <div className="flex justify-center items-center">
+        {" "}
+        <div className="bg-white/30 lg:w-2/5 w-6/7 backdrop-blur-lg text-white text-xl lg:text-2xl font-semibold lg:font-bold p-3 mt-2 rounded-md ">
+          <h1 className="text-white"> Location: {city?.name}</h1>
+          <p>
+            {forecast?.temperature_2m_mean[0]
+              ? `Today: ${forecast.time[0]}`
+              : "No data available"}
+          </p>
+          <p>
+            {" "}
+            {forecast?.temperature_2m_mean[0]
+              ? ` Temperature: ${forecast.temperature_2m_mean[0]}°C`
+              : "No data available"}
+          </p>
+          <p>{getWeatherText(forecast?.weathercode[0])}</p>
+        </div>
       </div>
-      <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+
+      <div className="mt-6 pb-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {forecast?.time.slice(1).map((day, index) => (
           <div
             key={day}
@@ -79,24 +85,32 @@ export default function WeatherList({ city }) {
             }
             className="bg-white/30 backdrop-blur-md text-white p-4 rounded-md"
           >
-            <p className="font-semibold">Date: {day}</p>
-            <p>{getWeatherText(forecast.weathercode[index + 1])}</p>
-            <p>{forecast.temperature_2m_mean[index + 1]}°C</p>
+            <CloudSun size={28} color="orange" />
+            <p className="font-semibold text-2xl">Date: {day}</p>
+            {/* <p>{getWeatherText(forecast.weathercode[index + 1])}</p> */}
+            <p className="font-semibold text-2xl">
+              {forecast.temperature_2m_mean[index + 1]}°C
+            </p>
           </div>
         ))}
       </div>
       {selectItem && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center">
-          <div className="bg-white/70 backdrop-blur-md p-6 rounded-lg w-96">
-            <h2 className="text-xl font-bold">{selectItem.temp}°C</h2>
-            <p className="mt-2">uuuu</p>
-
-            <button
-              onClick={() => setSelectedItem(null)}
-              className="mt-4 bg-red-500 text-white px-4 py-2 rounded"
-            >
-              Close
-            </button>
+        <div className="fixed inset-0 px-4 bg-black/60 flex items-center justify-center text-white">
+          <div className="bg-white/40 backdrop-blur-md px-6 py-4 rounded-lg w-96 lg:w-1/3">
+            <div className=" flex justify-end w-full">
+              <button
+                onClick={() => setSelectedItem(null)}
+                className="bg-red-500 text-white px-4 py-2 rounded-lg font-bold cursor-pointer"
+              >
+                {" "}
+                X
+              </button>
+            </div>
+            <h2 className="text-lg font-bold">Date: {selectItem.date}</h2>
+            <h2 className="text-lg font-bold"> Temp: {selectItem.temp}°C</h2>
+            <p className="mt-1 font-semibold">
+              {getWeatherText(selectItem.weather)}
+            </p>
           </div>
         </div>
       )}

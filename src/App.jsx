@@ -34,7 +34,7 @@ function App() {
             setQuery={setQuery}
             onSelectCity={handleSelectCity}
           />
-          <Weatherlist city={selectedCity} />
+          <Weatherlist city={selectedCity} query={query} />
         </div>
       </div>
     </div>
